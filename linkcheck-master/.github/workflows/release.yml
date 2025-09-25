@@ -1,0 +1,20 @@
+name: Release
+
+on:
+  push:
+    tags: '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart --version
+      - run: dart pub get
+      - run: dart pub global activate grinder
+      - run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+      - name: Package and publish
+        run: grind pkg-github-all
+        env:
+          GITHUB_BEARER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
