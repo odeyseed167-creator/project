@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io' hide Link;
-import 'package:linkcheck/linkcheck.dart';
+//import 'package:linkcheck/linkcheck.dart';
 
 
 import 'package:args/args.dart';
